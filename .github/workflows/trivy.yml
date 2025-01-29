@@ -1,0 +1,22 @@
+name: scan
+
+# Scan on pull request
+on:
+  pull_request:
+
+jobs:
+  build:
+    name: trivy-scan
+    runs-on: ubuntu-latest
+    steps:
+      # Checkout latest code
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      # Run the AquaSecurity Action from GitHub
+      - name: Run Trivy vulnerability scanner
+        uses: aquasecurity/trivy-action@0.28.0
+        with:
+          scan-type: "fs"
+          scan-ref: "."
+          trivy-config: trivy.yaml
