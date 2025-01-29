@@ -1,0 +1,26 @@
+name: Node.js Unit Tests
+
+on: [push]
+
+jobs:
+  build-and-test:
+    # Set up runner - Latest Ubuntu version
+    runs-on: ubuntu-latest
+    permissions:
+      checks: write
+      contents: read
+
+    steps:
+      # Checkout code from Repo
+      - uses: actions/checkout@v4
+      # Set Up Node in Runner
+      - name: Use Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20.x"
+      # Clean Install
+      - run: npm ci
+      # Build Node
+      - run: npm run build
+      # Run Unit Tests
+      - run: npm test
