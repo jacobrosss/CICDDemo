@@ -7,7 +7,7 @@ describe('Home', () => {
         render(<Home />)
         
         // remove second and for test to pass
-        const changes = screen.getByText('Save and and see your changes instantly.')
+        const changes = screen.getByText('Save and see your changes instantly.')
 
         expect(changes).toBeInTheDocument();
     })
